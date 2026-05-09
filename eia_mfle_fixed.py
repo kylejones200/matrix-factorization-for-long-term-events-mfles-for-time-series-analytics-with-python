@@ -5,6 +5,12 @@ from pathlib import Path
 from dataclasses import dataclass
 from sklearn.decomposition import NMF
 
+import logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
 np.random.seed(42)
 plt.rcParams.update(
     {
@@ -64,7 +70,7 @@ def main():
     recon = W @ H
     # Compute reconstruction MAE
     mae = float(np.mean(np.abs(M.values - recon)))
-    print(f"NMF reconstruction MAE: {mae:.3f}")
+    logger.info(f"NMF reconstruction MAE: {mae:.3f}")
 
     # Plot components (basis seasonal patterns)
     plt.figure(figsize=(9, 4))

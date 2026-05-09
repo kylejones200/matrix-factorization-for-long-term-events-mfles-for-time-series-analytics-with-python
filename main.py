@@ -34,7 +34,7 @@ def main():
     output_dir = Path(args.output_dir) if args.output_dir else Path(config['output']['figures_dir'])
     output_dir.mkdir(exist_ok=True)
     
-        data, time = generate_multivariate_series(
+    data, time = generate_multivariate_series(
         config['data']['n_series'],
         config['data']['n_timesteps'],
         config['data']['time_end'],
@@ -42,7 +42,7 @@ def main():
         config['data']['seed']
     )
     
-        svd, latent_features, reconstructed = apply_svd(data, config['model']['n_components'])
+    svd, latent_features, reconstructed = apply_svd(data, config['model']['n_components'])
     
     logging.info(f"Explained variance ratio: {svd.explained_variance_ratio_}")
     logging.info(f"Total explained variance: {svd.explained_variance_ratio_.sum():.2%}")

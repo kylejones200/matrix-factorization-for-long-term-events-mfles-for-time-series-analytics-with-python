@@ -33,7 +33,7 @@ def apply_svd(data: np.ndarray, n_components: int = 3) -> Tuple[TruncatedSVD, np
 def plot_reconstruction_comparison(data: np.ndarray, reconstructed: np.ndarray,
                                   time: np.ndarray, n_series: int = 3,
                                   output_path: Path = None):
- """Plot original vs reconstructed time series """
+    """Plot original vs reconstructed time series """
     fig, axes = plt.subplots(n_series, 1, figsize=(12, 4 * n_series))
     
     if n_series == 1:
