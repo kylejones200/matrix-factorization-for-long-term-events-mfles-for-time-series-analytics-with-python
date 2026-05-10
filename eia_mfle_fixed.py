@@ -57,7 +57,7 @@ def make_matrix(s: pd.Series) -> pd.DataFrame:
     return pivot
 
 
-def main():
+def main(plot: bool = False):
     cfg = Config()
     s = load_series(cfg)
     M = make_matrix(s)
@@ -73,25 +73,26 @@ def main():
     logger.info(f"NMF reconstruction MAE: {mae:.3f}")
 
     # Plot components (basis seasonal patterns)
-    plt.figure(figsize=(9, 4))
-    for k in range(cfg.n_components):
-        plt.plot(range(1, 13), H[k], label=f"basis {k}")
-    plt.xticks(range(1, 13))
-    plt.xlabel("Month")
-    plt.ylabel("Component strength")
-    plt.legend()
-    save_fig("eia_mfle_components.png")
+    if plot:
+        plt.figure(figsize=(9, 4))
+        for k in range(cfg.n_components):
+            plt.plot(range(1, 13), H[k], label=f"basis {k}")
+        plt.xticks(range(1, 13))
+        plt.xlabel("Month")
+        plt.ylabel("Component strength")
+        plt.legend()
+        save_fig("eia_mfle_components.png")
 
     # Plot actual vs reconstructed last year
-    last_year = M.index.max()
-    y_true = M.loc[last_year].values
-    y_hat = recon[M.index.get_loc(last_year)]
-    plt.figure(figsize=(9, 4))
-    plt.plot(range(1, 13), y_true, label="actual")
-    plt.plot(range(1, 13), y_hat, label="reconstructed")
-    plt.xticks(range(1, 13))
-    plt.legend()
-    save_fig("eia_mfle_reconstruction.png")
+        last_year = M.index.max()
+        y_true = M.loc[last_year].values
+        y_hat = recon[M.index.get_loc(last_year)]
+        plt.figure(figsize=(9, 4))
+        plt.plot(range(1, 13), y_true, label="actual")
+        plt.plot(range(1, 13), y_hat, label="reconstructed")
+        plt.xticks(range(1, 13))
+        plt.legend()
+        save_fig("eia_mfle_reconstruction.png")
 
 
 if __name__ == "__main__":

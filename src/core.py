@@ -34,26 +34,27 @@ def plot_reconstruction_comparison(data: np.ndarray, reconstructed: np.ndarray,
                                   time: np.ndarray, n_series: int = 3,
                                   output_path: Path = None):
     """Plot original vs reconstructed time series """
-    fig, axes = plt.subplots(n_series, 1, figsize=(12, 4 * n_series))
+                                  if plot:
+        fig, axes = plt.subplots(n_series, 1, figsize=(12, 4 * n_series))
     
-    if n_series == 1:
-        axes = [axes]
+        if n_series == 1:
+            axes = [axes]
     
-    for i in range(n_series):
-        axes[i].plot(time, data[i], label='Original', color="#4A90A4", linewidth=1.2)
-        axes[i].plot(time, reconstructed[i], label='Reconstructed', 
-                    color="#D4A574", linewidth=1.2, linestyle='--')
-        axes[i].set_xlabel("Time")
-        axes[i].set_ylabel("Value")
-        axes[i].legend(loc='best')
+        for i in range(n_series):
+            axes[i].plot(time, data[i], label='Original', color="#4A90A4", linewidth=1.2)
+            axes[i].plot(time, reconstructed[i], label='Reconstructed', 
+                        color="#D4A574", linewidth=1.2, linestyle='--')
+            axes[i].set_xlabel("Time")
+            axes[i].set_ylabel("Value")
+            axes[i].legend(loc='best')
     
-    plt.suptitle("Original vs Reconstructed Time Series (SVD)", 
-                fontsize=12, y=0.98, color='0.2')
+        plt.suptitle("Original vs Reconstructed Time Series (SVD)", 
+                    fontsize=12, y=0.98, color='0.2')
     
-    if output_path:
-        plt.savefig(output_path, dpi=100, bbox_inches="tight")
-        plt.close()
-    else:
-        plt.tight_layout()
-        plt.show()
+        if output_path:
+            plt.savefig(output_path, dpi=100, bbox_inches="tight")
+            plt.close()
+        else:
+            plt.tight_layout()
+            plt.show()
 
