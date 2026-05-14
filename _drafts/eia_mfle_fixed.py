@@ -1,3 +1,4 @@
+import signalplot
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -12,20 +13,9 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 np.random.seed(42)
-plt.rcParams.update(
-    {
-        "font.family": "serif",
-        "axes.spines.top": False,
-        "axes.spines.right": False,
-        "axes.linewidth": 0.8,
-    }
-)
+signalplot.apply(font_family='serif')
 
 
-def save_fig(path: str):
-    plt.tight_layout()
-    plt.savefig(path, bbox_inches="tight")
-    plt.close()
 
 
 @dataclass
@@ -81,7 +71,7 @@ def main(plot: bool = False):
         plt.xlabel("Month")
         plt.ylabel("Component strength")
         plt.legend()
-        save_fig("eia_mfle_components.png")
+        signalplot.save("eia_mfle_components.png")
 
     # Plot actual vs reconstructed last year
         last_year = M.index.max()
@@ -92,7 +82,7 @@ def main(plot: bool = False):
         plt.plot(range(1, 13), y_hat, label="reconstructed")
         plt.xticks(range(1, 13))
         plt.legend()
-        save_fig("eia_mfle_reconstruction.png")
+        signalplot.save("eia_mfle_reconstruction.png")
 
 
 if __name__ == "__main__":
