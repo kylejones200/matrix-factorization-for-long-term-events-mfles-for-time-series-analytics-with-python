@@ -34,7 +34,7 @@ def plot_reconstruction_comparison(data: np.ndarray, reconstructed: np.ndarray,
                                   time: np.ndarray, n_series: int = 3,
                                   output_path: Path = None):
     """Plot original vs reconstructed time series """
-                                  if plot:
+    if plot:
         fig, axes = plt.subplots(n_series, 1, figsize=(12, 4 * n_series))
     
         if n_series == 1:
