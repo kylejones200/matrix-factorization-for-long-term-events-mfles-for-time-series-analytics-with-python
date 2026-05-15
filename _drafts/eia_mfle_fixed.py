@@ -1,21 +1,19 @@
-import signalplot
+import logging
+from dataclasses import dataclass
+from pathlib import Path
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from pathlib import Path
-from dataclasses import dataclass
+import signalplot
 from sklearn.decomposition import NMF
 
-import logging
 logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger(__name__)
 np.random.seed(42)
-signalplot.apply(font_family='serif')
-
-
+signalplot.apply(font_family="serif")
 
 
 @dataclass
@@ -73,7 +71,7 @@ def main(plot: bool = False):
         plt.legend()
         signalplot.save("eia_mfle_components.png")
 
-    # Plot actual vs reconstructed last year
+        # Plot actual vs reconstructed last year
         last_year = M.index.max()
         y_true = M.loc[last_year].values
         y_hat = recon[M.index.get_loc(last_year)]
