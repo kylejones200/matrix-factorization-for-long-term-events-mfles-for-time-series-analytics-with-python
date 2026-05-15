@@ -2,13 +2,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.decomposition import TruncatedSVD
 import logging
+np.random.seed(42)
 
 # Simulate multivariate time series data
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 
-np.random.seed(42)
 n_series = 10
 n_timesteps = 100
 time = np.linspace(0, 10, n_timesteps)
