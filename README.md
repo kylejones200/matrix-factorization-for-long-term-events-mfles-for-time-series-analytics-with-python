@@ -34,3 +34,11 @@ Edit `config.yaml` to customize:
 - By default, the script generates synthetic multivariate time series data.
 - Truncated SVD reduces dimensionality while preserving variance.
 - The number of components determines the compression ratio and reconstruction quality.
+
+## Disclaimer
+
+Educational/demo code only. Not financial, safety, or engineering advice. Use at your own risk. Verify results independently before any production or operational use.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
