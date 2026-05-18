@@ -20,7 +20,7 @@ def apply_svd(data: np.ndarray, n_components: int=3) -> Tuple[TruncatedSVD, np.n
     reconstructed = svd.inverse_transform(latent_features)
     return (svd, latent_features, reconstructed)
 
-def plot_reconstruction_comparison(data: np.ndarray, reconstructed: np.ndarray, time: np.ndarray, n_series: int=3, output_path: Path | None=None, plot: bool = False):
+def plot_reconstruction_comparison(data: np.ndarray, reconstructed: np.ndarray, time: np.ndarray, n_series: int=3, output_path: Path | None=None, plot: bool=False):
     """Plot original vs reconstructed time series"""
     if not plot:
         return
