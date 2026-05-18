@@ -49,7 +49,6 @@ def main(plot: bool = False):
     cfg = Config()
     s = load_series(cfg)
     M = make_matrix(s)
-
     nmf = NMF(
         n_components=cfg.n_components, init="nndsvda", random_state=42, max_iter=1000
     )
@@ -59,7 +58,6 @@ def main(plot: bool = False):
     # Compute reconstruction MAE
     mae = float(np.mean(np.abs(M.values - recon)))
     logger.info(f"NMF reconstruction MAE: {mae:.3f}")
-
     # Plot components (basis seasonal patterns)
     if plot:
         plt.figure(figsize=(9, 4))
@@ -70,7 +68,6 @@ def main(plot: bool = False):
         plt.ylabel("Component strength")
         plt.legend()
         signalplot.save("eia_mfle_components.png")
-
         # Plot actual vs reconstructed last year
         last_year = M.index.max()
         y_true = M.loc[last_year].values
